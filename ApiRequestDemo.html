@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            /* text-align: center; */
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            border: 2px solid rgb(255, 0, 0);
+            width: 50vw;
+            border-radius: 10%;
+        }
+        button{
+            margin-top: 20px;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetching Random Dog Images Using API</h1>
+    <img id="img">
+    <button id="btn">Fetch</button>
+    <script>
+        const btn = document.getElementById('btn');
+        const img = document.getElementById('img');
+        btn.addEventListener('click', () => {
+            
+            var xhrRequest = new XMLHttpRequest();
+            xhrRequest.open('get','https://dog.ceo/api/breeds/image/random',true)
+            xhrRequest.send();
+
+            xhrRequest.onload = function(){
+                console.log(xhrRequest.response);
+                let JSONResponse = JSON.parse(xhrRequest.response);
+                let imgURL = JSONResponse.message;
+                img.src = imgURL;
+
+            }
+        });
+    </script>
+</body>
+</html>
