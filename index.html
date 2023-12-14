@@ -31,16 +31,14 @@
         const btn = document.getElementById('btn');
         const img = document.getElementById('img');
         btn.addEventListener('click', () => {
-            
+    
             var xhrRequest = new XMLHttpRequest();
             xhrRequest.open('get','https://dog.ceo/api/breeds/image/random',true)
             xhrRequest.send();
-
             xhrRequest.onload = function(){
                 console.log(xhrRequest.response);
                 let JSONResponse = JSON.parse(xhrRequest.response);
-                let imgURL = JSONResponse.message;
-                img.src = imgURL;
+                img.src = JSONResponse.message;
 
             }
         });
